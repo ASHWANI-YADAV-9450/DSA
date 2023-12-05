@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+
+bool isMatchHelper(string& s, int si, string& p, int pi) {
+    // base
+    if(si == s.size() && pi == p.size()) {
+        return true;
+    }
+
+    if(si == s.size() && pi < p.size()) {
+        while(pi < p.size()) {
+            if(p[pi] != '*') return false;
+            pi++;
+        }
+        return true;
+    }
+
+    // single char mathcing
+    if(s[si] == p[pi] || '?' == p[pi]) {
+        return isMatchHelper(s, si+1, p, pi+1);
+    } 
+
+    if(p[pi] =='*') {
+        // trate '*' as empty or null
+        bool caseA = isMatchHelper(s, si, p, pi+1);
+        
+
+        // let '*' consume one char.
+        bool caseB = isMatchHelper(s, si+1, p , pi);
+        return caseA || caseB;
+    }
+
+    // char doesn't match.
+    return false;
+}
+
+int main() {
+    string s ="aa";
+    string p = "*";
+
+    int si =0;
+    int pi = 0;
+
+    // bool ans = isMatchHelper(s, si, p, pi);
+
+    cout << "ans: " << isMatchHelper(s, si, p, pi) << endl;
+}

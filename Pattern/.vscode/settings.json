@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.java": "java",
+        "ostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabledIfIncludesResolve"
+}
